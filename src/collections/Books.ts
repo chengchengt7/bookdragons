@@ -24,6 +24,30 @@ export const Books: CollectionConfig = {
       type: "number",
       label: "Price",
       required: true,
-    }
+    },
+    {
+      name: "author",
+      label: "Author",
+      type: "relationship",
+      relationTo: "authors",
+      hasMany: false,
+      required: true,
+    },
+    {
+      name: "genres",
+      label: "Gengre",
+      type: "relationship",
+      relationTo: "genres",
+      hasMany: true,
+      required: true,
+    },
+    {
+      name: "targetaudiences",
+      label: "TargetAudiences",
+      type: "relationship",
+      relationTo: "targetaudiences",
+      hasMany: false,
+      required: false,
+    },
   ],
 };

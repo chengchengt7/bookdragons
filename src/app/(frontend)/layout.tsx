@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles.css";
+import "@/css/index.css";
 
 export const metadata = {
   description: "Et starterprosjekt for Payload CMS, bygget med Docker",

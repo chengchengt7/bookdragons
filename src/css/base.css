@@ -1,0 +1,19 @@
+html {
+  font-size: var(--root-font-size);
+  line-height: var(--root-line-height);
+  font-family: var(--site-font-family);
+}
+
+body {
+  background-color: var(--site-background-color);
+  color: var(--site-text-color);
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+a {
+  color: currentColor;
+  text-decoration-color: hsl(from currentColor h s 60%);
+}

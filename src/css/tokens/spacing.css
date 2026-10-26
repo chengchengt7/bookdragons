@@ -1,0 +1,8 @@
+:root {
+  --spacing-xs: 0.5rem;
+  --spacing-s: 0.75rem;
+  --spacing-m: 1rem;
+  --spacing-l: 2rem;
+
+  --page-title-margin-bottom: var(--spacing-m);
+}

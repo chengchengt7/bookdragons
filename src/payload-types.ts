@@ -70,6 +70,9 @@ export interface Config {
     users: User;
     media: Media;
     books: Book;
+    genres: Genre;
+    authors: Author;
+    targetaudiences: Targetaudience;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +83,9 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     books: BooksSelect<false> | BooksSelect<true>;
+    genres: GenresSelect<false> | GenresSelect<true>;
+    authors: AuthorsSelect<false> | AuthorsSelect<true>;
+    targetaudiences: TargetaudiencesSelect<false> | TargetaudiencesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -178,6 +184,52 @@ export interface Book {
   slug: string;
   summary: string;
   price: number;
+  author: number | Author;
+  genres: (number | Genre)[];
+  targetaudiences?: (number | null) | Targetaudience;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors".
+ */
+export interface Author {
+  id: number;
+  firstName: string;
+  lastName: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  photo?: (number | null) | Media;
+  about: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres".
+ */
+export interface Genre {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "targetaudiences".
+ */
+export interface Targetaudience {
+  id: number;
+  title: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -216,6 +268,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'books';
         value: number | Book;
+      } | null)
+    | ({
+        relationTo: 'genres';
+        value: number | Genre;
+      } | null)
+    | ({
+        relationTo: 'authors';
+        value: number | Author;
+      } | null)
+    | ({
+        relationTo: 'targetaudiences';
+        value: number | Targetaudience;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -310,6 +374,43 @@ export interface BooksSelect<T extends boolean = true> {
   slug?: T;
   summary?: T;
   price?: T;
+  author?: T;
+  genres?: T;
+  targetaudiences?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres_select".
+ */
+export interface GenresSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors_select".
+ */
+export interface AuthorsSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  generateSlug?: T;
+  slug?: T;
+  photo?: T;
+  about?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "targetaudiences_select".
+ */
+export interface TargetaudiencesSelect<T extends boolean = true> {
+  title?: T;
   updatedAt?: T;
   createdAt?: T;
 }

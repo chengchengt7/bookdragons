@@ -1,0 +1,8 @@
+:root {
+  --black: black;
+  --white: white;
+  --lightblue: #8ecae6;
+
+  --site-background-color: var(--lightblue);
+  --site-text-color: var(--black);
+}

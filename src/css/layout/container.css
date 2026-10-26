@@ -1,0 +1,16 @@
+.container {
+  --inline-size: var(--container-medium-max-inline-size);
+  --background-color: var(--container-background-color, transparent);
+
+  inline-size: min(100%, var(--inline-size));
+  margin-inline: auto;
+  background-color: var(--background-color);
+
+  &.small {
+    --inline-size: var(--container-small-max-inline-size);
+  }
+
+  &.large {
+    --inline-size: var(--container-large-max-inline-size);
+  }
+}
